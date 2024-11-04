@@ -1,0 +1,99 @@
+table dim_calender
+	lineageTag: 38574873-8806-4042-9e0d-9b3e578b4711
+
+	column DateKey
+		dataType: int64
+		isKey
+		formatString: 0
+		lineageTag: 7d73e882-a935-4525-942e-595058014bb0
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 38576c29-deb4-47e9-805c-76f4c246b311
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DayName
+		dataType: string
+		lineageTag: abace879-fffa-4144-9dd3-85d7f9b42dd5
+		summarizeBy: none
+		sourceColumn: DayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekNum
+		dataType: int64
+		formatString: 0
+		lineageTag: 3639d36c-70ef-4f2e-afcf-e145d05e034a
+		summarizeBy: none
+		sourceColumn: WeekNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		dataType: string
+		lineageTag: 2919d2cc-2bb0-4f85-854f-6183775a8f4d
+		summarizeBy: none
+		sourceColumn: MonthName
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthShort
+		dataType: string
+		lineageTag: 20a49fad-efa7-431d-825e-af3b6e05f162
+		summarizeBy: none
+		sourceColumn: MonthShort
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNum
+		dataType: int64
+		formatString: 0
+		lineageTag: b4e71488-3033-47c2-8dce-ed77b8739d73
+		summarizeBy: none
+		sourceColumn: MonthNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 62a7df8a-a689-4c24-8b5a-63567cd73c28
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: ce46e948-25ef-41b2-b142-d6f96ec23683
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_calender = m
+		mode: import
+		queryGroup: Dimensions
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\pc\OneDrive\Work\Personal-Portfolio\internet-sales-analytics\datasets\dim_calender.csv"),[Delimiter=",", Columns=9, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"DateKey", Int64.Type}, {"Date", type date}, {"DayName", type text}, {"WeekNum", Int64.Type}, {"MonthName", type text}, {"MonthShort", type text}, {"MonthNum", Int64.Type}, {"Quarter", Int64.Type}, {"Year", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

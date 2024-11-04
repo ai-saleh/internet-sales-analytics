@@ -1,0 +1,87 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 59
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 967,
+            "y": 0
+          },
+          "nodeIndex": "dim_calender",
+          "nodeLineageTag": "38574873-8806-4042-9e0d-9b3e578b4711",
+          "size": {
+            "height": 313,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 645,
+            "y": 0
+          },
+          "nodeIndex": "dim_customer",
+          "nodeLineageTag": "c71937a1-45c8-4117-9de3-7c4dc83ed7ab",
+          "size": {
+            "height": 258,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 194,
+            "y": 36
+          },
+          "nodeIndex": "dim_product",
+          "nodeLineageTag": "67a28257-4a3d-49de-81e2-76bec08b8595",
+          "size": {
+            "height": 365,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 665,
+            "y": 550
+          },
+          "nodeIndex": "fact_internet_sales",
+          "nodeLineageTag": "53a8f814-532a-4094-84d4-f4c775fe8ae0",
+          "size": {
+            "height": 260,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1195,
+            "y": 567
+          },
+          "nodeIndex": "fact_sales_budget",
+          "nodeLineageTag": "b8d1f51a-9ed4-4515-af8f-e00e2ea9e86c",
+          "size": {
+            "height": 145,
+            "width": 234
+          },
+          "zIndex": 1
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

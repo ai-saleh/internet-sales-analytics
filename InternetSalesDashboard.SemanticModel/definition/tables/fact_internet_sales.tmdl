@@ -1,0 +1,87 @@
+table fact_internet_sales
+	lineageTag: 53a8f814-532a-4094-84d4-f4c775fe8ae0
+
+	measure TotalSales = SUM(fact_internet_sales[SalesAmount])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 472e8ada-0368-46fd-990a-0893ddc85b34
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 24b44ec5-7343-454a-a60e-99b0071608ef
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 3c95abd4-95e9-4ab5-9f7a-d3aceace9704
+		summarizeBy: none
+		sourceColumn: OrderDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DueDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 817071d0-f072-4b26-88ef-105d33f07dee
+		summarizeBy: count
+		sourceColumn: DueDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: c4c9e2cb-599b-4b5e-94e2-64e22e27b930
+		summarizeBy: count
+		sourceColumn: ShipDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 2c3dd328-ca2f-4bdc-b285-e448fc860fb9
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesOrderNumber
+		dataType: string
+		lineageTag: e565ae5b-a3d1-4223-8583-50b50adc602e
+		summarizeBy: none
+		sourceColumn: SalesOrderNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesAmount
+		dataType: double
+		lineageTag: 8641ed0e-fef9-41dc-a8db-5c7a3ce6523f
+		summarizeBy: sum
+		sourceColumn: SalesAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fact_internet_sales = m
+		mode: import
+		queryGroup: Facts
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\pc\OneDrive\Work\Personal-Portfolio\internet-sales-analytics\datasets\fact_internet_sales.csv"),[Delimiter=",", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ProductKey", Int64.Type}, {"OrderDateKey", Int64.Type}, {"DueDateKey", Int64.Type}, {"ShipDateKey", Int64.Type}, {"CustomerKey", Int64.Type}, {"SalesOrderNumber", type text}, {"SalesAmount", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

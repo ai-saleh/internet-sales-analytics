@@ -1,0 +1,85 @@
+table dim_customer
+	lineageTag: c71937a1-45c8-4117-9de3-7c4dc83ed7ab
+
+	column CustomerKey
+		dataType: int64
+		isKey
+		formatString: 0
+		lineageTag: ad4ff355-56d5-4aab-b88c-ef64596d2c1e
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column FirstName
+		dataType: string
+		lineageTag: 3f43c2bc-c494-4786-8da3-d3314c08fb88
+		summarizeBy: none
+		sourceColumn: FirstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastName
+		dataType: string
+		lineageTag: b68e20c1-cd19-4f5a-9661-d16bc813a151
+		summarizeBy: none
+		sourceColumn: LastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column FullName
+		dataType: string
+		lineageTag: 22f655d4-5994-46cc-9b39-24db86827d7a
+		summarizeBy: none
+		sourceColumn: FullName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 39847adc-8631-4c19-9c07-c786cd1e3c03
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateFirstPurchase
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9229a50d-30a9-4d51-858d-6ee1a4456331
+		summarizeBy: none
+		sourceColumn: DateFirstPurchase
+
+		variation Variation
+			isDefault
+			relationship: 038b79c9-c532-420b-bfd6-945bb8e5097b
+			defaultHierarchy: LocalDateTable_e3ed57b4-9804-461c-aac7-f40f2067ed14.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column City
+		dataType: string
+		lineageTag: 23f1a217-c7ba-4336-b47c-7d2c715d2d83
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_customer = m
+		mode: import
+		queryGroup: Dimensions
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\pc\OneDrive\Work\Personal-Portfolio\internet-sales-analytics\datasets\dim_customer.csv"),[Delimiter=",", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"CustomerKey", Int64.Type}, {"FirstName", type text}, {"LastName", type text}, {"FullName", type text}, {"Gender", type text}, {"DateFirstPurchase", type date}, {"City", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

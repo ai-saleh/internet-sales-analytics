@@ -1,0 +1,108 @@
+table dim_product
+	lineageTag: 67a28257-4a3d-49de-81e2-76bec08b8595
+
+	column ProductKey
+		dataType: int64
+		isKey
+		formatString: 0
+		lineageTag: 191eed4f-1c84-4504-b96c-072136d00719
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemCode
+		dataType: string
+		lineageTag: a058700b-5be7-4cda-85e0-2019c76976ba
+		summarizeBy: none
+		sourceColumn: ItemCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: 32bd4390-49de-414e-9025-423d7c016230
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subcategory
+		dataType: string
+		lineageTag: fc7ab49a-f8aa-4317-acc1-d0b8c0a2491d
+		summarizeBy: none
+		sourceColumn: Subcategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: efbc1e58-939e-4a18-ad57-ac6d0adf1c75
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Color
+		dataType: string
+		lineageTag: 0376936b-a846-4c49-96fc-964e87b3b3be
+		summarizeBy: none
+		sourceColumn: Color
+
+		annotation SummarizationSetBy = Automatic
+
+	column Size
+		dataType: string
+		lineageTag: 98d1d588-9a9e-4272-a136-50bb273e42d4
+		summarizeBy: none
+		sourceColumn: Size
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductLine
+		dataType: string
+		lineageTag: 1b1c47e5-d38f-42a0-887a-b69d10010cee
+		summarizeBy: none
+		sourceColumn: ProductLine
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModelName
+		dataType: string
+		lineageTag: e731db4c-9931-4c67-a9f0-fe06bc9798fd
+		summarizeBy: none
+		sourceColumn: ModelName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 04b03521-04ed-48a3-a5a2-647bbfeaf0f3
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 2de1d72f-3f05-41f6-8239-8a43ec8b8809
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_product = m
+		mode: import
+		queryGroup: Dimensions
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\pc\OneDrive\Work\Personal-Portfolio\internet-sales-analytics\datasets\dim_product.csv"),[Delimiter=",", Columns=11, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ProductKey", Int64.Type}, {"ItemCode", type text}, {"ProductName", type text}, {"Subcategory", type text}, {"Category", type text}, {"Color", type text}, {"Size", type text}, {"ProductLine", type text}, {"ModelName", type text}, {"Description", type text}, {"Status", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

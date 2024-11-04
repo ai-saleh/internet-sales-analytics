@@ -1,0 +1,28 @@
+relationship 038b79c9-c532-420b-bfd6-945bb8e5097b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_customer.DateFirstPurchase
+	toColumn: LocalDateTable_e3ed57b4-9804-461c-aac7-f40f2067ed14.Date
+
+relationship 3be8adfa-e85b-f395-da5b-d75e81d09ed4
+	fromColumn: fact_internet_sales.CustomerKey
+	toColumn: dim_customer.CustomerKey
+
+relationship a53e35b6-2339-c2b4-5588-9df08a942e46
+	fromColumn: fact_internet_sales.ProductKey
+	toColumn: dim_product.ProductKey
+
+relationship 9d1b9fd1-0960-48f2-8e24-3309bf764981
+	fromColumn: fact_internet_sales.OrderDateKey
+	toColumn: dim_calender.DateKey
+
+relationship 1f431e6d-1956-4b78-8187-d6994c950674
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_sales_budget.Date
+	toColumn: LocalDateTable_1320da11-b7d3-48e1-a85c-28f330cde4fa.Date
+
+relationship e8440c09-b6c2-b8e7-b5ac-db9154240c3b
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: dim_calender.Date
+	toColumn: fact_sales_budget.Date
+
