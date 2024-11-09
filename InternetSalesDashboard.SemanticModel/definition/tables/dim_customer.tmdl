@@ -73,7 +73,7 @@ table dim_customer
 		queryGroup: Dimensions
 		source =
 				let
-				    Source = Csv.Document(File.Contents("C:\Users\pc\OneDrive\Work\Personal-Portfolio\internet-sales-analytics\datasets\dim_customer.csv"),[Delimiter=",", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents("C:\Users\pc\OneDrive\Work\Personal-Portfolio\internet-sales-analytics\assets\data\processed\dim_customer.csv"),[Delimiter=",", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"CustomerKey", Int64.Type}, {"FirstName", type text}, {"LastName", type text}, {"FullName", type text}, {"Gender", type text}, {"DateFirstPurchase", type date}, {"City", type text}})
 				in

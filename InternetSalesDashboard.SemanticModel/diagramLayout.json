@@ -5,13 +5,13 @@
       "ordinal": 0,
       "scrollPosition": {
         "x": 0,
-        "y": 59
+        "y": 0
       },
       "nodes": [
         {
           "location": {
-            "x": 967,
-            "y": 0
+            "x": 970,
+            "y": 22
           },
           "nodeIndex": "dim_calender",
           "nodeLineageTag": "38574873-8806-4042-9e0d-9b3e578b4711",
@@ -19,11 +19,11 @@
             "height": 313,
             "width": 234
           },
-          "zIndex": 4
+          "zIndex": 3
         },
         {
           "location": {
-            "x": 645,
+            "x": 596.913043478261,
             "y": 0
           },
           "nodeIndex": "dim_customer",
@@ -32,7 +32,7 @@
             "height": 258,
             "width": 234
           },
-          "zIndex": 3
+          "zIndex": 6
         },
         {
           "location": {
@@ -49,8 +49,8 @@
         },
         {
           "location": {
-            "x": 665,
-            "y": 550
+            "x": 648,
+            "y": 423.60869565217388
           },
           "nodeIndex": "fact_internet_sales",
           "nodeLineageTag": "53a8f814-532a-4094-84d4-f4c775fe8ae0",
@@ -58,12 +58,12 @@
             "height": 260,
             "width": 234
           },
-          "zIndex": 5
+          "zIndex": 4
         },
         {
           "location": {
-            "x": 1195,
-            "y": 567
+            "x": 1150,
+            "y": 494
           },
           "nodeIndex": "fact_sales_budget",
           "nodeLineageTag": "b8d1f51a-9ed4-4515-af8f-e00e2ea9e86c",
@@ -72,6 +72,19 @@
             "width": 234
           },
           "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1353,
+            "y": 263
+          },
+          "nodeIndex": "msr_sales",
+          "nodeLineageTag": "b0da12eb-0022-4a88-9528-bca78ccc1ddb",
+          "size": {
+            "height": 152.91304347826087,
+            "width": 234
+          },
+          "zIndex": 5
         }
       ],
       "name": "All tables",

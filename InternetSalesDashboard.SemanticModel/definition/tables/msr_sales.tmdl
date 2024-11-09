@@ -1,0 +1,41 @@
+table msr_sales
+	lineageTag: b0da12eb-0022-4a88-9528-bca78ccc1ddb
+
+	measure TotalSales = SUM(fact_internet_sales[SalesAmount])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 472e8ada-0368-46fd-990a-0893ddc85b34
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure TotalBudget = SUM(fact_sales_budget[Budget])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: b6a487cc-379b-4368-b4c3-327eb8856b0a
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure KPIStatus =
+			
+			VAR CurrentSales = [TotalSales]
+			VAR TargetSales = [TotalBudget]
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        ISBLANK(CurrentSales) || ISBLANK(TargetSales), 0,  // Handle blank cases
+			        CurrentSales >= TargetSales, 1,                     // Meeting or exceeding target
+			        CurrentSales < TargetSales, -1                      // Below target
+			    )
+		formatString: 0
+		lineageTag: 95b581ec-3664-44e4-beac-c8bd47e5a6c9
+
+	partition msr_sales = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

@@ -5,6 +5,11 @@
       "name": "CY24SU10",
       "reportVersionAtImport": "5.59",
       "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "Sunflower_Twilight4349027585910843.json",
+      "reportVersionAtImport": "5.59",
+      "type": "RegisteredResources"
     }
   },
   "layoutOptimization": "None",
@@ -21,6 +26,19 @@
           }
         }
       }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
     ]
   },
   "resourcePackages": [
@@ -32,6 +50,17 @@
           "name": "CY24SU10",
           "path": "BaseThemes/CY24SU10.json",
           "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "Sunflower_Twilight4349027585910843.json",
+          "path": "Sunflower_Twilight4349027585910843.json",
+          "type": "CustomTheme"
         }
       ]
     }

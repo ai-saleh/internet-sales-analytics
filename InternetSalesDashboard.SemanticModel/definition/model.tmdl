@@ -16,7 +16,7 @@ queryGroup Dimensions
 
 	annotation PBI_QueryGroupOrder = 1
 
-annotation PBI_QueryOrder = ["dim_calender","dim_customer","dim_product","fact_internet_sales","fact_sales_budget"]
+annotation PBI_QueryOrder = ["dim_calender","dim_customer","dim_product","fact_internet_sales","fact_sales_budget","msr_sales"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
@@ -32,6 +32,7 @@ ref table dim_product
 ref table fact_internet_sales
 ref table fact_sales_budget
 ref table LocalDateTable_1320da11-b7d3-48e1-a85c-28f330cde4fa
+ref table msr_sales
 
 ref cultureInfo en-US
 

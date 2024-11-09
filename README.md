@@ -1,10 +1,28 @@
 # **Internet Sales Analytics**
 
-Last Updated: 2024-11-04  
-Status: In Development
+Last Updated: 2024-11-09  
+Status: Completed
+
+## Sales Overview
+![Power BI: Sales Overview Page](assets/images/dashboards/pbi_dashboard_sales_overview.png)
+*Figure 1: Sales Overview dashboard showing KPIs, trend analysis, and geographical distribution of sales performance across product categories and top customers*
+
+## Detail Pages
+![Power BI: Customer Details](assets/images/dashboards/pbi_dashboard_customer_details.png)
+*Figure 2: Customer Details view displaying individual customer performance metrics, monthly trends, and comparative analysis against budget targets*
+
+![Power BI: Product Details](assets/images/dashboards/pbi_dashboard_product_details.png)
+*Figure 3: Product Details dashboard highlighting product-specific sales metrics, category performance, and monthly product sales analysis*
+
+## Data Model
+![Power BI: Data Model](assets/images/models/pbi_data_model_all_tables.png)
+*Figure 4: Star schema data model showing relationships between fact tables (Internet Sales, Sales Budget) and dimension tables (Calendar, Customer, Product), with one-to-many and one-to-one relationships clearly defined*
 
 ## **Table of Contents**
 - [**Internet Sales Analytics**](#internet-sales-analytics)
+  - [Sales Overview](#sales-overview)
+  - [Detail Pages](#detail-pages)
+  - [Data Model](#data-model)
   - [**Table of Contents**](#table-of-contents)
   - [**Overview**](#overview)
   - [**Project Requirements**](#project-requirements)
@@ -16,9 +34,7 @@ Status: In Development
     - [**Data Sources**](#data-sources)
     - [**Key Components**](#key-components)
     - [**Data Flow**](#data-flow)
-  - [**Getting Started**](#getting-started)
-    - [**Prerequisites**](#prerequisites)
-    - [**Installation**](#installation)
+  - [**Prerequisites**](#prerequisites)
   - [**Data Requirements Analysis**](#data-requirements-analysis)
     - [**Identifying Data Points**](#identifying-data-points)
     - [**Identifying Necessary Tables**](#identifying-necessary-tables)
@@ -40,9 +56,11 @@ Status: In Development
       - [**Relationship Details**](#relationship-details)
     - [**Measures and Calculations**](#measures-and-calculations)
       - [**Sales Performance Measures**](#sales-performance-measures)
-      - [**Geographical Configuration**](#geographical-configuration)
+    - [**Dashboard Design**](#dashboard-design)
+      - [**Data Preparation Requirements**](#data-preparation-requirements)
+      - [**Dashboard Components**](#dashboard-components)
   - [**Progress Updates**](#progress-updates)
-    - [**2024-11-04**](#2024-11-04)
+    - [**2024-11-09**](#2024-11-09)
     - [**2024-11-03**](#2024-11-03)
     - [**2024-11-01**](#2024-11-01)
     - [**Next Steps**](#next-steps)
@@ -51,7 +69,7 @@ Status: In Development
 
 This project implements advanced analytics for internet sales data using Microsoft's `AdventureWorksDW2019` database (SQL Server). The solution transforms static reporting into interactive visual dashboards, enabling data-driven decision-making for sales teams.
 
-Note: Database has been updated using the `Update_AdventureWorksDW_Data.sql` script by `techtalkcorner`.
+*Note: This documentation assumes you have updated the `AdventureWorksDW2019` database using the `Update_AdventureWorksDW_Data.sql` script (credit: `techtalkcorner`). The script uses the current year as its pivot point, so data dates will shift forward relative to your implementation date.*
 
 ## **Project Requirements**
 
@@ -78,7 +96,7 @@ Sales Manager
 ### **Project Overview**
 - **Reporter:** Sales Manager
 - **Value of Change:** Visual dashboards and improved sales reporting
-- **Necessary Systems:** Power BI, CRM System
+- **Necessary Systems:** SQL Server, Power BI
 - **Other Relevant Info:** Budgets have been delivered in Excel for 2024
 
 ### **User Stories**
@@ -95,7 +113,6 @@ Sales Manager
 ### **Data Sources**
 - SQL Server Database (DW)
 - Excel Budget Forecasts
-<!-- - CRM System Integration -->
 
 ### **Key Components**
 1. **Fact Tables**
@@ -114,20 +131,13 @@ graph LR
     B --> D[Power BI]
     D --> E[Dashboard]
 ```
+*Figure 5: Data flow diagram showing the ETL process from source systems (SQL Server and Excel Budget) through transformation to final Power BI dashboard visualization*
 
-## **Getting Started**
-
-### **Prerequisites**
+## **Prerequisites**
 - SQL Server 2019+
 - Power BI Desktop
 - Access to AdventureWorks database
 - Excel budget files
-
-### **Installation**
-1. Configure database connection
-<!-- 2. Import Power BI templates
-3. Set up data refresh schedule
-4. Configure user access -->
 
 ## **Data Requirements Analysis**
 
@@ -226,7 +236,7 @@ Extract and standardize customer demographics for sales analysis
 
 **Tables**: `DimCustomer` (primary), `DimGeography` (location details)
 
-**Note**: Gender values expanded from M/F to Male/Female to enhance readability in sales analysis reports and dashboards. This makes gender-based sales breakdowns more intuitive for business users.
+*Note: Gender values expanded from M/F to Male/Female to enhance readability in sales analysis reports and dashboards. This makes gender-based sales breakdowns more intuitive for business users.*
 
 **Query**:
 ```sql
@@ -328,7 +338,7 @@ Extract internet sales transactions for analysis
 
 **Tables**: `FactInternetSales` (transaction data)
 
-**Note**: Data filtered for last 24 months of sales activity to support current analysis requirements and align with business reporting needs. Includes key relationships to customer, product, and date dimensions.
+*Note: Data filtered for last 24 months of sales activity to support current analysis requirements and align with business reporting needs. Includes key relationships to customer, product, and date dimensions.*
 
 **Query**:
 ```sql
@@ -402,63 +412,63 @@ This section describes the data loading process and structure for the Power BI d
 
 #### **Fact Tables**
 
-**`fact_internet_sales`** - Internet sales transactions
-| Column           | Data Type      | Description                 |
-| ---------------- | -------------- | --------------------------- |
-| ProductKey       | Whole Number   | Foreign key to dim_product  |
-| OrderDateKey     | Whole Number   | Foreign key to dim_calendar |
-| DueDateKey       | Whole Number   | Foreign key to dim_calendar |
-| ShipDateKey      | Whole Number   | Foreign key to dim_calendar |
-| CustomerKey      | Whole Number   | Foreign key to dim_customer |
-| SalesOrderNumber | Text           | Unique order identifier     |
-| SalesAmount      | Decimal Number | Transaction amount          |
+- **`fact_internet_sales`** - Internet sales transactions
+  | Column           | Data Type      | Description                 |
+  | ---------------- | -------------- | --------------------------- |
+  | ProductKey       | Whole Number   | Foreign key to dim_product  |
+  | OrderDateKey     | Whole Number   | Foreign key to dim_calendar |
+  | DueDateKey       | Whole Number   | Foreign key to dim_calendar |
+  | ShipDateKey      | Whole Number   | Foreign key to dim_calendar |
+  | CustomerKey      | Whole Number   | Foreign key to dim_customer |
+  | SalesOrderNumber | Text           | Unique order identifier     |
+  | SalesAmount      | Decimal Number | Transaction amount          |
 
-**`fact_sales_budget`** - Sales targets
-| Column | Data Type    | Description   |
-| ------ | ------------ | ------------- |
-| Date   | Date         | Budget date   |
-| Budget | Whole Number | Target amount |
+- **`fact_sales_budget`** - Sales targets
+  | Column | Data Type    | Description   |
+  | ------ | ------------ | ------------- |
+  | Date   | Date         | Budget date   |
+  | Budget | Whole Number | Target amount |
 
 #### **Dimension Tables**
 
-**`dim_calendar`** - Date dimension
-| Column     | Data Type    | Description         |
-| ---------- | ------------ | ------------------- |
-| DateKey    | Whole Number | Primary key         |
-| Date       | Date         | Full date           |
-| DayName    | Text         | Day of week         |
-| WeekNum    | Whole Number | Week number (1-53)  |
-| MonthName  | Text         | Full month name     |
-| MonthShort | Text         | 3-letter month      |
-| MonthNum   | Whole Number | Month number (1-12) |
-| Quarter    | Whole Number | Quarter (1-4)       |
-| Year       | Whole Number | Calendar year       |
+- **`dim_calendar`** - Date dimension
+  | Column     | Data Type    | Description         |
+  | ---------- | ------------ | ------------------- |
+  | DateKey    | Whole Number | Primary key         |
+  | Date       | Date         | Full date           |
+  | DayName    | Text         | Day of week         |
+  | WeekNum    | Whole Number | Week number (1-53)  |
+  | MonthName  | Text         | Full month name     |
+  | MonthShort | Text         | 3-letter month      |
+  | MonthNum   | Whole Number | Month number (1-12) |
+  | Quarter    | Whole Number | Quarter (1-4)       |
+  | Year       | Whole Number | Calendar year       |
 
-**`dim_customer`** - Customer information
-| Column            | Data Type    | Description            |
-| ----------------- | ------------ | ---------------------- |
-| CustomerKey       | Whole Number | Primary key            |
-| FirstName         | Text         | Customer first name    |
-| LastName          | Text         | Customer last name     |
-| FullName          | Text         | Combined name          |
-| Gender            | Text         | Customer gender        |
-| DateFirstPurchase | Date         | First transaction date |
-| City              | Text         | Customer city          |
+- **`dim_customer`** - Customer information
+  | Column            | Data Type    | Description            |
+  | ----------------- | ------------ | ---------------------- |
+  | CustomerKey       | Whole Number | Primary key            |
+  | FirstName         | Text         | Customer first name    |
+  | LastName          | Text         | Customer last name     |
+  | FullName          | Text         | Combined name          |
+  | Gender            | Text         | Customer gender        |
+  | DateFirstPurchase | Date         | First transaction date |
+  | City              | Text         | Customer city          |
 
-**`dim_product`** - Product catalog
-| Column      | Data Type    | Description         |
-| ----------- | ------------ | ------------------- |
-| ProductKey  | Whole Number | Primary key         |
-| ItemCode    | Text         | Product SKU         |
-| ProductName | Text         | Product name        |
-| Subcategory | Text         | Product subcategory |
-| Category    | Text         | Product category    |
-| Color       | Text         | Product color       |
-| Size        | Text         | Product size        |
-| ProductLine | Text         | Product line        |
-| ModelName   | Text         | Model name          |
-| Description | Text         | Product description |
-| Status      | Text         | Product status      |
+- **`dim_product`** - Product catalog
+  | Column      | Data Type    | Description         |
+  | ----------- | ------------ | ------------------- |
+  | ProductKey  | Whole Number | Primary key         |
+  | ItemCode    | Text         | Product SKU         |
+  | ProductName | Text         | Product name        |
+  | Subcategory | Text         | Product subcategory |
+  | Category    | Text         | Product category    |
+  | Color       | Text         | Product color       |
+  | Size        | Text         | Product size        |
+  | ProductLine | Text         | Product line        |
+  | ModelName   | Text         | Model name          |
+  | Description | Text         | Product description |
+  | Status      | Text         | Product status      |
 
 ### **Data Modeling**
 
@@ -467,6 +477,11 @@ The data model follows a star schema design optimized for analytical queries and
 #### **Dimensional Model Structure**
 
 The model consists of three dimension tables and two fact tables, organized in a star schema pattern:
+
+![Power BI: Data Model](assets/images/models/pbi_data_model_all_tables.png)
+*See [Figure 4 (Data Model)](#data-model)*
+
+*Note: The `msr_sales` table shown in the diagram will be implemented in the Measures and Calculations section.*
 
 ```mermaid
 erDiagram
@@ -526,36 +541,44 @@ erDiagram
         int Budget
     }
 ```
+*Figure 6: Entity Relationship Diagram (ERD) showing the star schema design with `fact_internet_sales` and `fact_sales_budget` as fact tables, connected to dimension tables (`dim_calendar`, `dim_customer`, `dim_product`). The diagram illustrates table structures with their columns and data types, as well as cardinality relationships between tables.*
 
 #### **Relationship Details**
 
-***Calendar Dimension (`dim_calendar`)***
-- **To Internet Sales Relationship**
-  - Type: One-to-Many
-  - Cardinality: One date to zero or many sales
-  - Ordinality: Optional (dates may exist without sales)
-  - Business Rule: Each sale must reference exactly one date
+- **Calendar Dimension (`dim_calendar`)**
+  - **To Internet Sales Relationship**
+    | Aspect        | Description                               |
+    | ------------- | ----------------------------------------- |
+    | Type          | One-to-Many                               |
+    | Cardinality   | One date to zero or many sales            |
+    | Ordinality    | Optional (dates may exist without sales)  |
+    | Business Rule | Each sale must reference exactly one date |
 
-- **To Sales Budget Relationship**
-  - Type: One-to-Zero-or-One
-  - Cardinality: One date to zero or one budget entry
-  - Ordinality: Optional (dates may exist without budget entries)
-  - Business Rule: Each date can have at most one budget entry
-  - Note: This ensures budget uniqueness per date
+  - **To Sales Budget Relationship**
+    | Aspect        | Description                                       |
+    | ------------- | ------------------------------------------------- |
+    | Type          | One-to-Zero-or-One                                |
+    | Cardinality   | One date to zero or one budget entry              |
+    | Ordinality    | Optional (dates may exist without budget entries) |
+    | Business Rule | Each date can have at most one budget entry       |
 
-***Customer Dimension (`dim_customer`)***
-- **Relationship Type**: One-to-Many
-- **Cardinality**: One customer to one or many sales
-- **Ordinality**: Mandatory (customers must have at least one sale)
-- **Business Rule**: Each sale must be associated with exactly one customer
-- **Key Structure**: CustomerKey as primary key, referenced by fact_internet_sales
+- **Customer Dimension (`dim_customer`)**
+  | Aspect        | Description                                                       |
+  | ------------- | ----------------------------------------------------------------- |
+  | Type          | One-to-Many                                                       |
+  | Cardinality   | One customer to one or many sales                                 |
+  | Ordinality    | Mandatory (customers must have at least one sale)                 |
+  | Business Rule | Each sale must be associated with exactly one customer            |
+  | Key Structure | `CustomerKey` as primary key, referenced by `fact_internet_sales` |
 
-***Product Dimension (`dim_product`)***
-- **Relationship Type**: One-to-Many
-- **Cardinality**: One product to zero or many sales
-- **Ordinality**: Optional (products may exist without sales)
-- **Business Rule**: Each sale must reference exactly one product
-- **Key Structure**: ProductKey as primary key, referenced by fact_internet_sales
+- **Product Dimension (`dim_product`)**
+  | Aspect        | Description                                                      |
+  | ------------- | ---------------------------------------------------------------- |
+  | Type          | One-to-Many                                                      |
+  | Cardinality   | One product to zero or many sales                                |
+  | Ordinality    | Optional (products may exist without sales)                      |
+  | Business Rule | Each sale must reference exactly one product                     |
+  | Key Structure | `ProductKey` as primary key, referenced by `fact_internet_sales` |
 
 ### **Measures and Calculations**
 
@@ -563,67 +586,150 @@ This section documents the key measures implemented in the data model, along wit
 
 #### **Sales Performance Measures**
 
-***Base Sales Measures***
-```dax
-TotalSales = 
-    SUM(fact_internet_sales[SalesAmount])
-```
-- **Purpose**: Calculates total sales amount across all transactions
-- **Format**: Currency with 2 decimal places
+- **Core Sales Metrics**
+  ```dax
+  TotalSales = 
+      SUM(fact_internet_sales[SalesAmount])
+  ```
+  - **Purpose**: Aggregates total sales across transactions
+  - **Format**: Currency, whole numbers
 
-***Budget Analysis***
-```dax
-TotalBudget = 
-    SUM(fact_sales_budget[Budget])
-```
-- **Purpose**: Aggregates budget targets for analysis period
-- **Format**: Currency with 2 decimal places
+- **Budget Analysis**
+  ```dax
+  TotalBudget = 
+      SUM(fact_sales_budget[Budget])
+  ```
+  - **Purpose**: Calculates budget targets for period
+  - **Format**: Currency, whole numbers
 
-```dax
-SalesOverBudget = 
-    DIVIDE(
-        [TotalSales], 
-        [TotalBudget],
-        BLANK()    // Returns BLANK if division by zero
-    )
-```
-- **Purpose**: Calculates achievement ratio against budget
-- **Usage**: KPI monitoring and variance analysis
-- **Format**: Percentage with 2 decimal places
-- **Note**: Returns BLANK for periods without budget allocation
+  ```dax
+  KPIStatus =
+  VAR CurrentSales = [TotalSales]
+  VAR TargetSales = [TotalBudget]
+  RETURN
+      SWITCH(
+          TRUE(),
+          ISBLANK(CurrentSales) || ISBLANK(TargetSales), 0,    // No data
+          CurrentSales >= TargetSales, 1,                       // At/above target
+          -1                                                    // Below target
+      )
+  ```
+  - **Purpose**: KPI status indicator for visualizations
+  - **Format**: Integer (-1, 0, 1)
 
-#### **Geographical Configuration**
+*Note: Create all measures in dedicated measure table named `msr_sales`*
 
-***Customer Geography Settings***
-- The `City` column in `dim_customer` requires specific configuration for mapping:
+### **Dashboard Design**
 
-***Data Category***
-  - **Column**: `dim_customer[City]`
-  - **Category**: Set to `City`
-  - **Purpose**: Enable geographic visualization features
+The dashboard suite consists of three views providing comprehensive sales analysis capabilities.
+
+#### **Data Preparation Requirements**
+
+- **Customer Location Settings**
+  | Setting         | Value                | Purpose               |
+  | --------------- | -------------------- | --------------------- |
+  | Column          | `dim_customer[City]` | Location reference    |
+  | Data Category   | `City`               | Mapping enablement    |
+  | Geographic Role | `City`               | Spatial visualization |
+
+- **Month Sorting**
+  - Configure `MonthShort` column in `dim_calendar`
+  - Sort by: `MonthNum` column
+  - Purpose: Ensure chronological month ordering
+
+#### **Dashboard Components**
+
+**1. Sales Overview Dashboard**
+
+*Primary dashboard providing high-level sales performance metrics and trends*
+
+**Global Filters**
+| Filter Type | Field                        | Style        | Notes                        |
+| ----------- | ---------------------------- | ------------ | ---------------------------- |
+| Time Period | `MonthShort`, `Year`         | Dropdown     | Dual-axis temporal filtering |
+| Geography   | `City`                       | Dropdown     | Location-based filtering     |
+| Product     | `ProductName`, `Subcategory` | Dropdown     | Product hierarchy filtering  |
+| Category    | `Category`                   | Cards (Grid) | High-level product grouping  |
+
+**Visualizations**
+| Chart Type       | Purpose                | Key Metrics                   | Configuration                 |
+| ---------------- | ---------------------- | ----------------------------- | ----------------------------- |
+| Donut Chart      | Category Distribution  | `TotalSales`                  | Group by Product Category     |
+| Stacked Bar (x2) | Top Performers         | `TotalSales`                  | Top 10 Customers/Products     |
+| Gauge            | KPI Tracking           | `TotalSales` vs `TotalBudget` | Target performance monitoring |
+| Line Chart       | Trend Analysis         | `TotalSales`, `TotalBudget`   | Monthly comparison            |
+| Map              | Geographic Performance | `TotalSales`                  | Bubble size by sales volume   |
+
+![Power BI: Sales Overview Page](assets/images/dashboards/pbi_dashboard_sales_overview.png)
+*See [Figure 1 (Sales Overview)](#sales-overview)*
+
+**2. Customer Analysis Dashboard**
+
+*Detailed customer performance metrics and temporal analysis*
+
+**Retained Components**
+- All global filters
+- Top 10 customers bar chart
+- Sales vs budget trend line
+
+**New Components**
+| Element         | Type  | Configuration                                                     | Purpose                       |
+| --------------- | ----- | ----------------------------------------------------------------- | ----------------------------- |
+| KPI Cards       | Card  | `TotalSales`, `TotalBudget`                                       | At-a-glance metrics           |
+| Customer Matrix | Table | Rows: `FullName`<br>Columns: `MonthShort`<br>Values: `TotalSales` | Detailed customer performance |
+
+![Power BI: Customer Details](assets/images/dashboards/pbi_dashboard_customer_details.png)
+*See [Figure 2 (Customer Details)](#detail-pages)*
+
+**3. Product Analysis Dashboard**
+
+*Product-focused performance analysis*
+
+**Modified Components**
+| Element              | Original           | Modified          | Purpose                       |
+| -------------------- | ------------------ | ----------------- | ----------------------------- |
+| Performance Table    | Customer Matrix    | Product Matrix    | Product-centric analysis      |
+| Top Performers Chart | Customer Bar Chart | Product Bar Chart | Product ranking visualization |
+
+**Configuration Details**
+- Matrix Configuration
+  - Rows: `ProductName`
+  - Columns: `MonthShort`
+  - Values: `TotalSales`
+- Retained all other elements from Customer Analysis Dashboard
+
+![Power BI: Product Details](assets/images/dashboards/pbi_dashboard_product_details.png)
+*See [Figure 3 (Product Details)](#detail-pages)*
 
 ## **Progress Updates**
 
-### **2024-11-04**
+### **2024-11-09**
 - Completed Power BI data loading process
 - Implemented star schema data model with proper relationships
 - Created core sales and budget measures
 - Configured geographical data settings for mapping
-- Documented dashboard preparation process
+- Completed comprehensive dashboard design documentation
+- Established performance monitoring guidelines
+- Defined dashboard suite architecture and components
 
 ### **2024-11-03**
 - Completed identification of necessary tables in the database
 - Extracted required data from identified tables
 - Generated clean output files for analysis
+- Validated data quality and completeness
+- Created standardized naming conventions
 
 ### **2024-11-01**
 - Received initial requirements from Sales Manager
 - Identified key business metrics needed
 - Started mapping data requirements to available sources
+- Established project timeline and milestones
+- Created initial project documentation structure
 
 ### **Next Steps**
 1. ~~Validate data availability in AdventureWorks database~~
 2. ~~Review Excel budget format and integration options~~
-3. Build visualization layers in Power BI
-4. Implement user-specific filtering
-5. Create user documentation
+3. ~~Document dashboard design and components~~
+4. ~~Build visualization layers in Power BI~~
+5. Implement user-specific filtering and access controls
+6. Implement drill-through capabilities from overview to detailed views

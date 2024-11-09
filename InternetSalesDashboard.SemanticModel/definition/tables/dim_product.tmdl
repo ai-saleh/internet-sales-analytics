@@ -96,7 +96,7 @@ table dim_product
 		queryGroup: Dimensions
 		source =
 				let
-				    Source = Csv.Document(File.Contents("C:\Users\pc\OneDrive\Work\Personal-Portfolio\internet-sales-analytics\datasets\dim_product.csv"),[Delimiter=",", Columns=11, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents("C:\Users\pc\OneDrive\Work\Personal-Portfolio\internet-sales-analytics\assets\data\processed\dim_product.csv"),[Delimiter=",", Columns=11, Encoding=65001, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ProductKey", Int64.Type}, {"ItemCode", type text}, {"ProductName", type text}, {"Subcategory", type text}, {"Category", type text}, {"Color", type text}, {"Size", type text}, {"ProductLine", type text}, {"ModelName", type text}, {"Description", type text}, {"Status", type text}})
 				in

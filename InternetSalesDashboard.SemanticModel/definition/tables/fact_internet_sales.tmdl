@@ -1,12 +1,6 @@
 table fact_internet_sales
 	lineageTag: 53a8f814-532a-4094-84d4-f4c775fe8ae0
 
-	measure TotalSales = SUM(fact_internet_sales[SalesAmount])
-		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
-		lineageTag: 472e8ada-0368-46fd-990a-0893ddc85b34
-
-		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
-
 	column ProductKey
 		dataType: int64
 		formatString: 0
@@ -75,7 +69,7 @@ table fact_internet_sales
 		queryGroup: Facts
 		source =
 				let
-				    Source = Csv.Document(File.Contents("C:\Users\pc\OneDrive\Work\Personal-Portfolio\internet-sales-analytics\datasets\fact_internet_sales.csv"),[Delimiter=",", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents("C:\Users\pc\OneDrive\Work\Personal-Portfolio\internet-sales-analytics\assets\data\processed\fact_internet_sales.csv"),[Delimiter=",", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ProductKey", Int64.Type}, {"OrderDateKey", Int64.Type}, {"DueDateKey", Int64.Type}, {"ShipDateKey", Int64.Type}, {"CustomerKey", Int64.Type}, {"SalesOrderNumber", type text}, {"SalesAmount", type number}})
 				in

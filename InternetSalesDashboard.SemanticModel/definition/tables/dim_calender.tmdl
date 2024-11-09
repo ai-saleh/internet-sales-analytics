@@ -52,6 +52,9 @@ table dim_calender
 		lineageTag: 20a49fad-efa7-431d-825e-af3b6e05f162
 		summarizeBy: none
 		sourceColumn: MonthShort
+		sortByColumn: MonthNum
+
+		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 
@@ -87,7 +90,7 @@ table dim_calender
 		queryGroup: Dimensions
 		source =
 				let
-				    Source = Csv.Document(File.Contents("C:\Users\pc\OneDrive\Work\Personal-Portfolio\internet-sales-analytics\datasets\dim_calender.csv"),[Delimiter=",", Columns=9, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents("C:\Users\pc\OneDrive\Work\Personal-Portfolio\internet-sales-analytics\assets\data\processed\dim_calender.csv"),[Delimiter=",", Columns=9, Encoding=65001, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"DateKey", Int64.Type}, {"Date", type date}, {"DayName", type text}, {"WeekNum", Int64.Type}, {"MonthName", type text}, {"MonthShort", type text}, {"MonthNum", Int64.Type}, {"Quarter", Int64.Type}, {"Year", Int64.Type}})
 				in

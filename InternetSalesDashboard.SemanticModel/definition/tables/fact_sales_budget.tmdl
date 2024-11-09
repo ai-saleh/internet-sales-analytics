@@ -1,23 +1,6 @@
 table fact_sales_budget
 	lineageTag: b8d1f51a-9ed4-4515-af8f-e00e2ea9e86c
 
-	measure TotalBudget = SUM(fact_sales_budget[Budget])
-		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
-		lineageTag: b6a487cc-379b-4368-b4c3-327eb8856b0a
-
-		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
-
-	measure SalesOverBudget = ```
-			
-			    DIVIDE(
-			        [TotalSales], 
-			        [TotalBudget],
-			        BLANK()    // Returns BLANK if division by zero
-			    )
-			```
-		formatString: 0.00%;-0.00%;0.00%
-		lineageTag: 7083bfdb-0905-4b14-bf2b-dcacbda273b7
-
 	column Date
 		dataType: dateTime
 		formatString: Long Date
@@ -48,7 +31,7 @@ table fact_sales_budget
 		queryGroup: Facts
 		source =
 				let
-				    Source = Excel.Workbook(File.Contents("C:\Users\pc\OneDrive\Work\Personal-Portfolio\internet-sales-analytics\datasets\SalesBudget.xlsx"), null, true),
+				    Source = Excel.Workbook(File.Contents("C:\Users\pc\OneDrive\Work\Personal-Portfolio\internet-sales-analytics\assets\data\source\SalesBudget.xlsx"), null, true),
 				    Budget_Sheet = Source{[Item="Budget",Kind="Sheet"]}[Data],
 				    #"Promoted Headers" = Table.PromoteHeaders(Budget_Sheet, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Budget", Int64.Type}})
