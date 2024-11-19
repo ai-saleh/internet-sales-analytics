@@ -1,4 +1,4 @@
-table dim_calender
+table dim_calendar
 	lineageTag: 38574873-8806-4042-9e0d-9b3e578b4711
 
 	column DateKey
@@ -85,16 +85,18 @@ table dim_calender
 
 		annotation SummarizationSetBy = Automatic
 
-	partition dim_calender = m
+	partition dim_calendar = m
 		mode: import
 		queryGroup: Dimensions
 		source =
 				let
-				    Source = Csv.Document(File.Contents("C:\Users\pc\OneDrive\Work\Personal-Portfolio\internet-sales-analytics\assets\data\processed\dim_calender.csv"),[Delimiter=",", Columns=9, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents("C:\Users\pc\OneDrive\Work\Personal-Portfolio\internet-sales-analytics\assets\data\processed\dim_calendar.csv"),[Delimiter=",", Columns=9, Encoding=65001, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"DateKey", Int64.Type}, {"Date", type date}, {"DayName", type text}, {"WeekNum", Int64.Type}, {"MonthName", type text}, {"MonthShort", type text}, {"MonthNum", Int64.Type}, {"Quarter", Int64.Type}, {"Year", Int64.Type}})
 				in
 				    #"Changed Type"
+
+	changedProperty = Name
 
 	annotation PBI_ResultType = Table
 

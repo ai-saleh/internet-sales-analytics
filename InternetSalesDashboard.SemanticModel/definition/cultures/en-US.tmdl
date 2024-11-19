@@ -8,7 +8,7 @@ cultureInfo en-US
 			    "dim_calender": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "dim_calender"
+			          "ConceptualEntity": "dim_calendar"
 			        }
 			      },
 			      "State": "Generated",
@@ -36,7 +36,7 @@ cultureInfo en-US
 			    "dim_calender.date_key": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "dim_calender",
+			          "ConceptualEntity": "dim_calendar",
 			          "ConceptualProperty": "DateKey"
 			        }
 			      },
@@ -165,7 +165,7 @@ cultureInfo en-US
 			    "dim_calender.date": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "dim_calender",
+			          "ConceptualEntity": "dim_calendar",
 			          "ConceptualProperty": "Date"
 			        }
 			      },
@@ -202,7 +202,7 @@ cultureInfo en-US
 			    "dim_calender.day_name": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "dim_calender",
+			          "ConceptualEntity": "dim_calendar",
 			          "ConceptualProperty": "DayName"
 			        }
 			      },
@@ -265,7 +265,7 @@ cultureInfo en-US
 			    "dim_calender.week_num": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "dim_calender",
+			          "ConceptualEntity": "dim_calendar",
 			          "ConceptualProperty": "WeekNum"
 			        }
 			      },
@@ -298,7 +298,7 @@ cultureInfo en-US
 			    "dim_calender.month_name": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "dim_calender",
+			          "ConceptualEntity": "dim_calendar",
 			          "ConceptualProperty": "MonthName"
 			        }
 			      },
@@ -371,7 +371,7 @@ cultureInfo en-US
 			    "dim_calender.month_short": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "dim_calender",
+			          "ConceptualEntity": "dim_calendar",
 			          "ConceptualProperty": "MonthShort"
 			        }
 			      },
@@ -510,7 +510,7 @@ cultureInfo en-US
 			    "dim_calender.month_num": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "dim_calender",
+			          "ConceptualEntity": "dim_calendar",
 			          "ConceptualProperty": "MonthNum"
 			        }
 			      },
@@ -553,7 +553,7 @@ cultureInfo en-US
 			    "dim_calender.quarter": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "dim_calender",
+			          "ConceptualEntity": "dim_calendar",
 			          "ConceptualProperty": "Quarter"
 			        }
 			      },
@@ -579,7 +579,7 @@ cultureInfo en-US
 			    "dim_calender.year": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "dim_calender",
+			          "ConceptualEntity": "dim_calendar",
 			          "ConceptualProperty": "Year"
 			        }
 			      },
@@ -5409,7 +5409,7 @@ cultureInfo en-US
 			    },
 			    "dim_calender_has_fact_sales_budget": {
 			      "Binding": {
-			        "ConceptualEntity": "dim_calender"
+			        "ConceptualEntity": "dim_calendar"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -6491,7 +6491,7 @@ cultureInfo en-US
 			    },
 			    "dim_calender_has_year": {
 			      "Binding": {
-			        "ConceptualEntity": "dim_calender"
+			        "ConceptualEntity": "dim_calendar"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -6524,7 +6524,7 @@ cultureInfo en-US
 			    },
 			    "dim_calender_has_quarter": {
 			      "Binding": {
-			        "ConceptualEntity": "dim_calender"
+			        "ConceptualEntity": "dim_calendar"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -6557,7 +6557,7 @@ cultureInfo en-US
 			    },
 			    "dim_calender_has_month_num": {
 			      "Binding": {
-			        "ConceptualEntity": "dim_calender"
+			        "ConceptualEntity": "dim_calendar"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -6590,7 +6590,7 @@ cultureInfo en-US
 			    },
 			    "dim_calender_has_month_short": {
 			      "Binding": {
-			        "ConceptualEntity": "dim_calender"
+			        "ConceptualEntity": "dim_calendar"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -6623,7 +6623,7 @@ cultureInfo en-US
 			    },
 			    "dim_calender_has_month_name": {
 			      "Binding": {
-			        "ConceptualEntity": "dim_calender"
+			        "ConceptualEntity": "dim_calendar"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -6656,7 +6656,7 @@ cultureInfo en-US
 			    },
 			    "dim_calender_has_week_num": {
 			      "Binding": {
-			        "ConceptualEntity": "dim_calender"
+			        "ConceptualEntity": "dim_calendar"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -6689,7 +6689,7 @@ cultureInfo en-US
 			    },
 			    "dim_calender_has_day_name": {
 			      "Binding": {
-			        "ConceptualEntity": "dim_calender"
+			        "ConceptualEntity": "dim_calendar"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -6722,7 +6722,7 @@ cultureInfo en-US
 			    },
 			    "dim_calender_has_date": {
 			      "Binding": {
-			        "ConceptualEntity": "dim_calender"
+			        "ConceptualEntity": "dim_calendar"
 			      },
 			      "State": "Generated",
 			      "Roles": {
@@ -6755,7 +6755,7 @@ cultureInfo en-US
 			    },
 			    "dim_calender_has_date_key": {
 			      "Binding": {
-			        "ConceptualEntity": "dim_calender"
+			        "ConceptualEntity": "dim_calendar"
 			      },
 			      "State": "Generated",
 			      "Roles": {

@@ -1,79 +1,78 @@
-# **Internet Sales Analytics**
+<h1 style="font-size: 2em; font-weight: bold;">Internet Sales Analytics</h1>
 
-Last Updated: 2024-11-09  
+Last Updated: 2024-11-19  
 Status: Completed
 
-## Sales Overview
-![Power BI: Sales Overview Page](assets/images/dashboards/pbi_dashboard_sales_overview.png)
+## 1. **Dashboards and Data Model**
+
+### 1.1. **Sales Overview**
+![Power BI: Sales Overview Page](assets/images/dashboards/pbi_dashboard_sales_overview.png)  
 *Figure 1: Sales Overview dashboard showing KPIs, trend analysis, and geographical distribution of sales performance across product categories and top customers*
 
-## Detail Pages
-![Power BI: Customer Details](assets/images/dashboards/pbi_dashboard_customer_details.png)
+### 1.2. **Detail Pages**
+![Power BI: Customer Details](assets/images/dashboards/pbi_dashboard_customer_details.png)  
 *Figure 2: Customer Details view displaying individual customer performance metrics, monthly trends, and comparative analysis against budget targets*
 
-![Power BI: Product Details](assets/images/dashboards/pbi_dashboard_product_details.png)
+![Power BI: Product Details](assets/images/dashboards/pbi_dashboard_product_details.png)  
 *Figure 3: Product Details dashboard highlighting product-specific sales metrics, category performance, and monthly product sales analysis*
 
-## Data Model
-![Power BI: Data Model](assets/images/models/pbi_data_model_all_tables.png)
+### 1.3. **Data Model**
+![Power BI: Data Model](assets/images/models/pbi_data_model_all_tables.png)  
 *Figure 4: Star schema data model showing relationships between fact tables (Internet Sales, Sales Budget) and dimension tables (Calendar, Customer, Product), with one-to-many and one-to-one relationships clearly defined*
 
-## **Table of Contents**
-- [**Internet Sales Analytics**](#internet-sales-analytics)
-  - [Sales Overview](#sales-overview)
-  - [Detail Pages](#detail-pages)
-  - [Data Model](#data-model)
-  - [**Table of Contents**](#table-of-contents)
-  - [**Overview**](#overview)
-  - [**Project Requirements**](#project-requirements)
-    - [**Requirements Email**](#requirements-email)
-  - [**User Requirements Analysis**](#user-requirements-analysis)
-    - [**Project Overview**](#project-overview)
-    - [**User Stories**](#user-stories)
-  - [**Technical Architecture**](#technical-architecture)
-    - [**Data Sources**](#data-sources)
-    - [**Key Components**](#key-components)
-    - [**Data Flow**](#data-flow)
-  - [**Prerequisites**](#prerequisites)
-  - [**Data Requirements Analysis**](#data-requirements-analysis)
-    - [**Identifying Data Points**](#identifying-data-points)
-    - [**Identifying Necessary Tables**](#identifying-necessary-tables)
-      - [**Core Tables**](#core-tables)
-      - [**Dimension Tables**](#dimension-tables)
-      - [**External Data**](#external-data)
-  - [**Data Gathering and Cleaning**](#data-gathering-and-cleaning)
-    - [**Calendar Dimension**](#calendar-dimension)
-    - [**Customer Dimension**](#customer-dimension)
-    - [**Product Dimension**](#product-dimension)
-    - [**Internet Sales Fact Table**](#internet-sales-fact-table)
-  - [**Dashboard Preparation**](#dashboard-preparation)
-    - [**Loading Data into Power BI**](#loading-data-into-power-bi)
-    - [**Table Specifications**](#table-specifications)
-      - [**Fact Tables**](#fact-tables)
-      - [**Dimension Tables**](#dimension-tables-1)
-    - [**Data Modeling**](#data-modeling)
-      - [**Dimensional Model Structure**](#dimensional-model-structure)
-      - [**Relationship Details**](#relationship-details)
-    - [**Measures and Calculations**](#measures-and-calculations)
-      - [**Sales Performance Measures**](#sales-performance-measures)
-    - [**Dashboard Design**](#dashboard-design)
-      - [**Data Preparation Requirements**](#data-preparation-requirements)
-      - [**Dashboard Components**](#dashboard-components)
-  - [**Progress Updates**](#progress-updates)
-    - [**2024-11-09**](#2024-11-09)
-    - [**2024-11-03**](#2024-11-03)
-    - [**2024-11-01**](#2024-11-01)
-    - [**Next Steps**](#next-steps)
+## 2. **Table of Contents**
+- [1. **Dashboards and Data Model**](#1-dashboards-and-data-model)
+  - [1.1. **Sales Overview**](#11-sales-overview)
+  - [1.2. **Detail Pages**](#12-detail-pages)
+  - [1.3. **Data Model**](#13-data-model)
+- [2. **Table of Contents**](#2-table-of-contents)
+- [3. **Overview**](#3-overview)
+- [4. **Project Requirements**](#4-project-requirements)
+  - [4.1. **Requirements Email**](#41-requirements-email)
+- [5. **User Requirements Analysis**](#5-user-requirements-analysis)
+  - [5.1. **Project Overview**](#51-project-overview)
+  - [5.2. **User Stories**](#52-user-stories)
+- [6. **Technical Architecture**](#6-technical-architecture)
+  - [6.1. **Data Sources**](#61-data-sources)
+  - [6.2. **Key Components**](#62-key-components)
+  - [6.3. **Data Flow**](#63-data-flow)
+- [7. **Prerequisites**](#7-prerequisites)
+- [8. **Data Requirements Analysis**](#8-data-requirements-analysis)
+  - [8.1. **Identifying Data Points**](#81-identifying-data-points)
+  - [8.2. **Identifying Necessary Tables**](#82-identifying-necessary-tables)
+    - [8.2.1. **Core Tables**](#821-core-tables)
+    - [8.2.2. **Dimension Tables**](#822-dimension-tables)
+    - [8.2.3. **External Data**](#823-external-data)
+- [9. **Data Gathering and Cleaning**](#9-data-gathering-and-cleaning)
+  - [9.1. **Calendar Dimension**](#91-calendar-dimension)
+  - [9.2. **Customer Dimension**](#92-customer-dimension)
+  - [9.3. **Product Dimension**](#93-product-dimension)
+  - [9.4. **Internet Sales Fact Table**](#94-internet-sales-fact-table)
+- [10. **Dashboard Preparation**](#10-dashboard-preparation)
+  - [10.1. **Loading Data into Power BI**](#101-loading-data-into-power-bi)
+  - [10.2. **Table Specifications**](#102-table-specifications)
+    - [10.2.1. **Fact Tables**](#1021-fact-tables)
+    - [10.2.2. **Dimension Tables**](#1022-dimension-tables)
+  - [10.3. **Data Modeling**](#103-data-modeling)
+    - [10.3.1. **Dimensional Model Structure**](#1031-dimensional-model-structure)
+    - [10.3.2. **Relationship Details**](#1032-relationship-details)
+  - [10.4. **Measures and Calculations**](#104-measures-and-calculations)
+    - [10.4.1. **Core Sales Metrics**](#1041-core-sales-metrics)
+    - [10.4.2. **Budget Analysis**](#1042-budget-analysis)
+  - [10.5. **Dashboard Design**](#105-dashboard-design)
+    - [10.5.1. **Data Preparation Requirements**](#1051-data-preparation-requirements)
+    - [10.5.2. **Dashboard Components**](#1052-dashboard-components)
+- [11. **Progress Updates**](#11-progress-updates)
 
-## **Overview**
+## 3. **Overview**
 
 This project implements advanced analytics for internet sales data using Microsoft's `AdventureWorksDW2019` database (SQL Server). The solution transforms static reporting into interactive visual dashboards, enabling data-driven decision-making for sales teams.
 
-*Note: This documentation assumes you have updated the `AdventureWorksDW2019` database using the `Update_AdventureWorksDW_Data.sql` script (credit: `techtalkcorner`). The script uses the current year as its pivot point, so data dates will shift forward relative to your implementation date.*
+> **Note**: This documentation assumes you have updated the `AdventureWorksDW2019` database using the `Update_AdventureWorksDW_Data.sql` script (credit: `techtalkcorner`). The script uses the current year as its pivot point, so data dates will shift forward relative to your implementation date.
 
-## **Project Requirements**
+## 4. **Project Requirements**
 
-### **Requirements Email**
+### 4.1. **Requirements Email**
 
 **Subject**: Internet Sales Dashboard Project Requirements
 
@@ -91,15 +90,15 @@ Best regards,
   
 Sales Manager
 
-## **User Requirements Analysis**
+## 5. **User Requirements Analysis**
 
-### **Project Overview**
+### 5.1. **Project Overview**
 - **Reporter:** Sales Manager
 - **Value of Change:** Visual dashboards and improved sales reporting
 - **Necessary Systems:** SQL Server, Power BI
 - **Other Relevant Info:** Budgets have been delivered in Excel for 2024
 
-### **User Stories**
+### 5.2. **User Stories**
 
 | ID  | Role                 | Requirement                                        | Business Value                                             | Acceptance Criteria                                                |
 | --- | -------------------- | -------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------ |
@@ -108,13 +107,13 @@ Sales Manager
 | 3   | Sales Representative | A detailed overview of internet sales per customer | To identify high-volume customers and growth opportunities | A Power BI dashboard which allows filtering data for each customer |
 | 4   | Sales Representative | A detailed overview of internet sales per product  | To track and analyze top-selling products                  | A Power BI dashboard which allows filtering data for each product  |
 
-## **Technical Architecture**
+## 6. **Technical Architecture**
 
-### **Data Sources**
+### 6.1. **Data Sources**
 - SQL Server Database (DW)
 - Excel Budget Forecasts
 
-### **Key Components**
+### 6.2. **Key Components**
 1. **Fact Tables**
    - Internet Sales
    - Budget Data
@@ -123,7 +122,7 @@ Sales Manager
    - Customers
    - Time
 
-### **Data Flow**
+### 6.3. **Data Flow**
 ```mermaid
 graph LR
     A[SQL Server] --> B[ETL Process]
@@ -133,15 +132,15 @@ graph LR
 ```
 *Figure 5: Data flow diagram showing the ETL process from source systems (SQL Server and Excel Budget) through transformation to final Power BI dashboard visualization*
 
-## **Prerequisites**
+## 7. **Prerequisites**
 - SQL Server 2019+
 - Power BI Desktop
 - Access to AdventureWorks database
 - Excel budget files
 
-## **Data Requirements Analysis**
+## 8. **Data Requirements Analysis**
 
-### **Identifying Data Points**
+### 8.1. **Identifying Data Points**
 
 Based on the requirements email, we need to identify the following data points in our SQL Server database:
 
@@ -152,14 +151,14 @@ Based on the requirements email, we need to identify the following data points i
 
 This initial analysis helps map business requirements to data sources and will guide our database exploration.
 
-### **Identifying Necessary Tables**
+### 8.2. **Identifying Necessary Tables**
 
-#### **Core Tables**
+#### 8.2.1. **Core Tables**
 - **`FactInternetSales`**
   - Primary fact table containing internet sales transactions
   - Contains key metrics and dimensional relationships
 
-#### **Dimension Tables**
+#### 8.2.2. **Dimension Tables**
 - **`DimProduct`**
   - Product details and attributes
   - Supports product performance analysis
@@ -170,16 +169,16 @@ This initial analysis helps map business requirements to data sources and will g
   - Time dimension for temporal analysis
   - Supports 24-month retrospective reporting
 
-#### **External Data**
+#### 8.2.3. **External Data**
 - **`SalesBudget.xlsx`**
   - Excel file containing budget forecasts
   - Required for performance vs. target analysis
 
-## **Data Gathering and Cleaning**
+## 9. **Data Gathering and Cleaning**
 
 Extraction and standardization of key dimensional and fact tables from `AdventureWorksDW2019` database for sales analysis.
 
-### **Calendar Dimension**
+### 9.1. **Calendar Dimension**
 
 Prepare date dimension lookup table with standardized calendar attributes
 
@@ -187,10 +186,10 @@ Prepare date dimension lookup table with standardized calendar attributes
 
 **Tables**: `DimDate` (calendar dimension table)
 
-**Note**: Date attributes formatted for consistency:
- - Day names in English 
- - Month names abbreviated to 3 characters
- - Date ranges filtered dynamically for 24-month retrospective analysis
+> **Note**: Date attributes formatted for consistency:
+>  - Day names in English 
+>  - Month names abbreviated to 3 characters
+>  - Date ranges filtered dynamically for 24-month retrospective analysis
 
 **Query**:
 ```sql
@@ -228,7 +227,7 @@ ORDER BY
 
 Save results as `dim_calendar.csv`
 
-### **Customer Dimension**
+### 9.2. **Customer Dimension**
 
 Extract and standardize customer demographics for sales analysis
 
@@ -236,7 +235,7 @@ Extract and standardize customer demographics for sales analysis
 
 **Tables**: `DimCustomer` (primary), `DimGeography` (location details)
 
-*Note: Gender values expanded from M/F to Male/Female to enhance readability in sales analysis reports and dashboards. This makes gender-based sales breakdowns more intuitive for business users.*
+> **Note**: Gender values expanded from M/F to Male/Female to enhance readability in sales analysis reports and dashboards. This makes gender-based sales breakdowns more intuitive for business users.
 
 **Query**:
 ```sql
@@ -274,7 +273,7 @@ ORDER BY
 
 Save results as `dim_customer.csv`
 
-### **Product Dimension**
+### 9.3. **Product Dimension**
 
 Extract and standardize product dimension for sales analysis
 
@@ -282,10 +281,10 @@ Extract and standardize product dimension for sales analysis
 
 **Tables**: `DimProduct` (primary), `DimProductSubcategory`, `DimProductCategory`
 
-**Note**: Selected columns support various analytical scenarios:
- - Product categorization (Category -> Subcategory -> Product)
- - Product attributes (Color, Size, Line, Model)
- - Product status with default handling for NULL values
+> **Note**: Selected columns support various analytical scenarios:
+>  - Product categorization (Category -> Subcategory -> Product)
+>  - Product attributes (Color, Size, Line, Model)
+>  - Product status with default handling for NULL values
 
 This selection enables multi-level product performance analysis and segmentation.
 
@@ -330,7 +329,7 @@ ORDER BY
 
 Save results as `dim_product.csv`
 
-### **Internet Sales Fact Table**
+### 9.4. **Internet Sales Fact Table**
 
 Extract internet sales transactions for analysis
 
@@ -338,7 +337,7 @@ Extract internet sales transactions for analysis
 
 **Tables**: `FactInternetSales` (transaction data)
 
-*Note: Data filtered for last 24 months of sales activity to support current analysis requirements and align with business reporting needs. Includes key relationships to customer, product, and date dimensions.*
+> **Note**: Data filtered for last 24 months of sales activity to support current analysis requirements and align with business reporting needs. Includes key relationships to customer, product, and date dimensions.
 
 **Query**:
 ```sql
@@ -373,11 +372,11 @@ ORDER BY
 
 Save results as `fact_internet_sales.csv`
 
-## **Dashboard Preparation**
+## 10. **Dashboard Preparation**
 
 This section describes the data loading process and structure for the Power BI dashboard implementation.
 
-### **Loading Data into Power BI**
+### 10.1. **Loading Data into Power BI**
 
 1. **Import Data Sources**
    - Import CSV files exported from SQL Server database:
@@ -408,9 +407,9 @@ This section describes the data loading process and structure for the Power BI d
 └─📁 Other Queries  
 ```
 
-### **Table Specifications**
+### 10.2. **Table Specifications**
 
-#### **Fact Tables**
+#### 10.2.1. **Fact Tables**
 
 - **`fact_internet_sales`** - Internet sales transactions
   | Column           | Data Type      | Description                 |
@@ -429,7 +428,7 @@ This section describes the data loading process and structure for the Power BI d
   | Date   | Date         | Budget date   |
   | Budget | Whole Number | Target amount |
 
-#### **Dimension Tables**
+#### 10.2.2. **Dimension Tables**
 
 - **`dim_calendar`** - Date dimension
   | Column     | Data Type    | Description         |
@@ -470,18 +469,18 @@ This section describes the data loading process and structure for the Power BI d
   | Description | Text         | Product description |
   | Status      | Text         | Product status      |
 
-### **Data Modeling**
+### 10.3. **Data Modeling**
 
 The data model follows a star schema design optimized for analytical queries and reporting. This section details the dimensional model structure and relationships.
 
-#### **Dimensional Model Structure**
+#### 10.3.1. **Dimensional Model Structure**
 
 The model consists of three dimension tables and two fact tables, organized in a star schema pattern:
 
-![Power BI: Data Model](assets/images/models/pbi_data_model_all_tables.png)
-*See [Figure 4 (Data Model)](#data-model)*
+![Power BI: Data Model](assets/images/models/pbi_data_model_all_tables.png)  
+*See [Figure 4 (Data Model)](#13-data-model)*
 
-*Note: The `msr_sales` table shown in the diagram will be implemented in the Measures and Calculations section.*
+> **Note**: The `msr_sales` table shown in the diagram will be implemented in the Measures and Calculations section.
 
 ```mermaid
 erDiagram
@@ -543,7 +542,7 @@ erDiagram
 ```
 *Figure 6: Entity Relationship Diagram (ERD) showing the star schema design with `fact_internet_sales` and `fact_sales_budget` as fact tables, connected to dimension tables (`dim_calendar`, `dim_customer`, `dim_product`). The diagram illustrates table structures with their columns and data types, as well as cardinality relationships between tables.*
 
-#### **Relationship Details**
+#### 10.3.2. **Relationship Details**
 
 - **Calendar Dimension (`dim_calendar`)**
   - **To Internet Sales Relationship**
@@ -580,13 +579,16 @@ erDiagram
   | Business Rule | Each sale must reference exactly one product                     |
   | Key Structure | `ProductKey` as primary key, referenced by `fact_internet_sales` |
 
-### **Measures and Calculations**
+### 10.4. **Measures and Calculations**
 
 This section documents the key measures implemented in the data model, along with their business context and technical implementation details.
 
-#### **Sales Performance Measures**
+> **Note**: Create all measures in dedicated measure table named `msr_sales`
 
-- **Core Sales Metrics**
+#### 10.4.1. **Core Sales Metrics**
+
+- **`TotalSales`**
+
   ```dax
   TotalSales = 
       SUM(fact_internet_sales[SalesAmount])
@@ -594,13 +596,18 @@ This section documents the key measures implemented in the data model, along wit
   - **Purpose**: Aggregates total sales across transactions
   - **Format**: Currency, whole numbers
 
-- **Budget Analysis**
+#### 10.4.2. **Budget Analysis**
+
+- **`TotalBudget`**
+
   ```dax
   TotalBudget = 
       SUM(fact_sales_budget[Budget])
   ```
   - **Purpose**: Calculates budget targets for period
   - **Format**: Currency, whole numbers
+
+- **`KPIStatus`**
 
   ```dax
   KPIStatus =
@@ -617,27 +624,23 @@ This section documents the key measures implemented in the data model, along wit
   - **Purpose**: KPI status indicator for visualizations
   - **Format**: Integer (-1, 0, 1)
 
-*Note: Create all measures in dedicated measure table named `msr_sales`*
-
-### **Dashboard Design**
+### 10.5. **Dashboard Design**
 
 The dashboard suite consists of three views providing comprehensive sales analysis capabilities.
 
-#### **Data Preparation Requirements**
+#### 10.5.1. **Data Preparation Requirements**
 
-- **Customer Location Settings**
-  | Setting         | Value                | Purpose               |
-  | --------------- | -------------------- | --------------------- |
-  | Column          | `dim_customer[City]` | Location reference    |
-  | Data Category   | `City`               | Mapping enablement    |
-  | Geographic Role | `City`               | Spatial visualization |
+Configure the following columns (using column tools) as follows:
 
-- **Month Sorting**
-  - Configure `MonthShort` column in `dim_calendar`
-  - Sort by: `MonthNum` column
-  - Purpose: Ensure chronological month ordering
+- **`dim_customer[City]`**
+  - Data Category > `City`
+  - **Purpose**: Mapping enablement
 
-#### **Dashboard Components**
+- **`dim_calendar[MonthShort]`**
+  - Sort by column > `MonthNum`
+  - **Purpose**: Ensure chronological month ordering
+
+#### 10.5.2. **Dashboard Components**
 
 **1. Sales Overview Dashboard**
 
@@ -660,8 +663,8 @@ The dashboard suite consists of three views providing comprehensive sales analys
 | Line Chart       | Trend Analysis         | `TotalSales`, `TotalBudget`   | Monthly comparison            |
 | Map              | Geographic Performance | `TotalSales`                  | Bubble size by sales volume   |
 
-![Power BI: Sales Overview Page](assets/images/dashboards/pbi_dashboard_sales_overview.png)
-*See [Figure 1 (Sales Overview)](#sales-overview)*
+![Power BI: Sales Overview Page](assets/images/dashboards/pbi_dashboard_sales_overview.png)  
+*See [Figure 1 (Sales Overview)](#11-sales-overview)*
 
 **2. Customer Analysis Dashboard**
 
@@ -678,8 +681,8 @@ The dashboard suite consists of three views providing comprehensive sales analys
 | KPI Cards       | Card  | `TotalSales`, `TotalBudget`                                       | At-a-glance metrics           |
 | Customer Matrix | Table | Rows: `FullName`<br>Columns: `MonthShort`<br>Values: `TotalSales` | Detailed customer performance |
 
-![Power BI: Customer Details](assets/images/dashboards/pbi_dashboard_customer_details.png)
-*See [Figure 2 (Customer Details)](#detail-pages)*
+![Power BI: Customer Details](assets/images/dashboards/pbi_dashboard_customer_details.png)  
+*See [Figure 2 (Customer Details)](#12-detail-pages)*
 
 **3. Product Analysis Dashboard**
 
@@ -693,17 +696,20 @@ The dashboard suite consists of three views providing comprehensive sales analys
 
 **Configuration Details**
 - Matrix Configuration
-  - Rows: `ProductName`
-  - Columns: `MonthShort`
-  - Values: `TotalSales`
+  - Rows > `ProductName`
+  - Columns > `MonthShort`
+  - Values > `TotalSales`
 - Retained all other elements from Customer Analysis Dashboard
 
-![Power BI: Product Details](assets/images/dashboards/pbi_dashboard_product_details.png)
-*See [Figure 3 (Product Details)](#detail-pages)*
+![Power BI: Product Details](assets/images/dashboards/pbi_dashboard_product_details.png)  
+*See [Figure 3 (Product Details)](#12-detail-pages)*
 
-## **Progress Updates**
+## 11. **Progress Updates**
 
-### **2024-11-09**
+**2024-11-19**
+- Updated documentation with minor formatting changes
+
+**2024-11-09**
 - Completed Power BI data loading process
 - Implemented star schema data model with proper relationships
 - Created core sales and budget measures
@@ -712,24 +718,16 @@ The dashboard suite consists of three views providing comprehensive sales analys
 - Established performance monitoring guidelines
 - Defined dashboard suite architecture and components
 
-### **2024-11-03**
+**2024-11-03**
 - Completed identification of necessary tables in the database
 - Extracted required data from identified tables
 - Generated clean output files for analysis
 - Validated data quality and completeness
 - Created standardized naming conventions
 
-### **2024-11-01**
+**2024-11-01**
 - Received initial requirements from Sales Manager
 - Identified key business metrics needed
 - Started mapping data requirements to available sources
 - Established project timeline and milestones
 - Created initial project documentation structure
-
-### **Next Steps**
-1. ~~Validate data availability in AdventureWorks database~~
-2. ~~Review Excel budget format and integration options~~
-3. ~~Document dashboard design and components~~
-4. ~~Build visualization layers in Power BI~~
-5. Implement user-specific filtering and access controls
-6. Implement drill-through capabilities from overview to detailed views

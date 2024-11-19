@@ -16,15 +16,15 @@ queryGroup Dimensions
 
 	annotation PBI_QueryGroupOrder = 1
 
-annotation PBI_QueryOrder = ["dim_calender","dim_customer","dim_product","fact_internet_sales","fact_sales_budget","msr_sales"]
+annotation PBI_QueryOrder = ["dim_calendar","dim_customer","dim_product","fact_internet_sales","fact_sales_budget","msr_sales"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.137.1102.0 (24.10)
+annotation PBIDesktopVersion = 2.138.782.0 (24.11)
 
 annotation PBI_ProTooling = ["DevMode"]
 
-ref table dim_calender
+ref table dim_calendar
 ref table DateTableTemplate_8e586815-ce9f-4312-9a0d-2e7d68d085b4
 ref table dim_customer
 ref table LocalDateTable_e3ed57b4-9804-461c-aac7-f40f2067ed14

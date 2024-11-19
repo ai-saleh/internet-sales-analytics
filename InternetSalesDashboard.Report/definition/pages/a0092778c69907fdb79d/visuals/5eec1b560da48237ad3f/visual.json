@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.3.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
   "name": "5eec1b560da48237ad3f",
   "position": {
     "x": 200,
@@ -20,7 +20,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_calender"
+                      "Entity": "dim_calendar"
                     }
                   },
                   "Property": "MonthShort"
@@ -199,7 +199,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "dim_calender"
+                            "Entity": "dim_calendar"
                           }
                         },
                         "Property": "MonthShort"
@@ -228,7 +228,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "dim_calender"
+                            "Entity": "dim_calendar"
                           }
                         },
                         "Property": "MonthShort"
@@ -257,7 +257,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "dim_calender"
+                            "Entity": "dim_calendar"
                           }
                         },
                         "Property": "MonthShort"
@@ -286,7 +286,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "dim_calender"
+                            "Entity": "dim_calendar"
                           }
                         },
                         "Property": "MonthShort"
@@ -315,7 +315,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "dim_calender"
+                            "Entity": "dim_calendar"
                           }
                         },
                         "Property": "MonthShort"
@@ -344,7 +344,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "dim_calender"
+                            "Entity": "dim_calendar"
                           }
                         },
                         "Property": "MonthShort"
@@ -373,7 +373,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "dim_calender"
+                            "Entity": "dim_calendar"
                           }
                         },
                         "Property": "MonthShort"
@@ -402,7 +402,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "dim_calender"
+                            "Entity": "dim_calendar"
                           }
                         },
                         "Property": "MonthShort"
@@ -431,7 +431,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "dim_calender"
+                            "Entity": "dim_calendar"
                           }
                         },
                         "Property": "MonthShort"
@@ -460,7 +460,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "dim_calender"
+                            "Entity": "dim_calendar"
                           }
                         },
                         "Property": "MonthShort"
@@ -489,7 +489,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "dim_calender"
+                            "Entity": "dim_calendar"
                           }
                         },
                         "Property": "MonthShort"
@@ -518,7 +518,7 @@
                       "Column": {
                         "Expression": {
                           "SourceRef": {
-                            "Entity": "dim_calender"
+                            "Entity": "dim_calendar"
                           }
                         },
                         "Property": "MonthShort"
@@ -545,7 +545,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "dim_calender"
+                          "Entity": "dim_calendar"
                         }
                       },
                       "Property": "MonthShort"

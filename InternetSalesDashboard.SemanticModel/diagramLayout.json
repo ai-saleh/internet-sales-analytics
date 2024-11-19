@@ -5,22 +5,9 @@
       "ordinal": 0,
       "scrollPosition": {
         "x": 0,
-        "y": 0
+        "y": 13
       },
       "nodes": [
-        {
-          "location": {
-            "x": 970,
-            "y": 22
-          },
-          "nodeIndex": "dim_calender",
-          "nodeLineageTag": "38574873-8806-4042-9e0d-9b3e578b4711",
-          "size": {
-            "height": 313,
-            "width": 234
-          },
-          "zIndex": 3
-        },
         {
           "location": {
             "x": 596.913043478261,
@@ -85,6 +72,18 @@
             "width": 234
           },
           "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 970,
+            "y": 22
+          },
+          "nodeIndex": "dim_calendar",
+          "size": {
+            "height": 313,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

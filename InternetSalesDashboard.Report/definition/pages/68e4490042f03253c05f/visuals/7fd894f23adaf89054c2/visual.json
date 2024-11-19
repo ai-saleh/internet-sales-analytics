@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.3.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
   "name": "7fd894f23adaf89054c2",
   "position": {
     "x": 872,
@@ -20,7 +20,7 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dim_calender"
+                      "Entity": "dim_calendar"
                     }
                   },
                   "Property": "Year"
@@ -39,7 +39,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "dim_calender"
+                    "Entity": "dim_calendar"
                   }
                 },
                 "Property": "Year"
@@ -161,7 +161,7 @@
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "dim_calender"
+                "Entity": "dim_calendar"
               }
             },
             "Property": "Year"
@@ -173,7 +173,7 @@
           "From": [
             {
               "Name": "d",
-              "Entity": "dim_calender",
+              "Entity": "dim_calendar",
               "Type": 0
             }
           ],

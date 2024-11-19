@@ -13,7 +13,7 @@ relationship a53e35b6-2339-c2b4-5588-9df08a942e46
 
 relationship 9d1b9fd1-0960-48f2-8e24-3309bf764981
 	fromColumn: fact_internet_sales.OrderDateKey
-	toColumn: dim_calender.DateKey
+	toColumn: dim_calendar.DateKey
 
 relationship 1f431e6d-1956-4b78-8187-d6994c950674
 	joinOnDateBehavior: datePartOnly
@@ -23,6 +23,6 @@ relationship 1f431e6d-1956-4b78-8187-d6994c950674
 relationship e8440c09-b6c2-b8e7-b5ac-db9154240c3b
 	crossFilteringBehavior: bothDirections
 	fromCardinality: one
-	fromColumn: dim_calender.Date
+	fromColumn: dim_calendar.Date
 	toColumn: fact_sales_budget.Date
 
